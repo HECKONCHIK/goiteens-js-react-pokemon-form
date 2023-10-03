@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { ImSearch } from 'react-icons/im';
-import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
 const styles = { form: { marginBottom: 20 } };
@@ -23,7 +22,7 @@ export class PokemonForm extends Component {
     }
 
     this.props.onSubmit(this.state.pokemonName);
-    // this.setState({ pokemonName: '' });
+    this.setState({ pokemonName: '' });
   };
 
   render() {

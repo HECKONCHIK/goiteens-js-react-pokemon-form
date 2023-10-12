@@ -1,44 +1,41 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
 
 const styles = { form: { marginBottom: 20 } };
 
-export class PokemonForm extends Component {
-  state = {
-    pokemonName: '',
+export const PokemonForm = ({onSubmit}) => {
+
+  const [value, setValue] = useState('');
+
+  const handleNameChange = event => {
+    setValue(event.currentTarget.value.toLowerCase());
   };
 
-  handleNameChange = event => {
-    this.setState({ pokemonName: event.currentTarget.value.toLowerCase() });
-  };
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
-    if (this.state.pokemonName.trim() === '') {
-      toast.error("Введіть ім'я покемона");
-      return;
-    }
+    // if (value === '') {
+    //   toast.error("Введіть ім'я покемона");
+    //   return;
+    // }
 
-    this.props.onSubmit(this.state.pokemonName);
-    this.setState({ pokemonName: '' });
+    onSubmit(value);
+    setValue('');
   };
 
-  render() {
     return (
-      <form onSubmit={this.handleSubmit} style={styles.form}>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
           name="pokemonName"
-          value={this.state.pokemonName}
-          onChange={this.handleNameChange}
+          value={value}
+          onChange={handleNameChange}
         />
         <button type="submit">
-          <ImSearch style={{ marginRight: 8 }} />
+          {/* <ImSearch style={{ marginRight: 8 }} /> */}
           Знайти
         </button>
       </form>
     );
-  }
 }

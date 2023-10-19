@@ -1,25 +1,32 @@
-import { Component } from "react";
+import { useState, createContext } from "react";
 // import { GlobalStyle } from "Global.styled";
 // import { PokemonForm } from "./PokemonForm/PokemonForm";
 // import { PokemonInfo } from "./PokemonForm/PokemonInfo";
 // import {ToastContainer} from 'react-toastify';
-import { Clock } from "./Clock/Clock";
+// import { Clock } from "./Clock/Clock";
+// import { ComponentA } from "./useContext/ComponentA";
+import { Friends } from "./Friends/Friends";
 
-export class App extends Component {
+export const Color = createContext(null)
+
+export const App = () => {
   
-  state= {
-    pokemon: null,
-  }
+  const[pokemon, setPokemon] = useState(null);
 
- getPokemonName=(name)=>{
-  this.setState({pokemon: name})
+ const getPokemonName=(name)=>{
+  setPokemon(name)
  }
 
-  render(){
     return (
       <>
         
-      <Clock/>
+        <Friends/>
+
+        {/* <Color.Provider color ="red">
+          <ComponentA/>
+        </Color.Provider> */}
+          
+      {/* <Clock/> */}
 
       {/* <PokemonForm onSubmit={this.getPokemonName} />
         <PokemonInfo name={this.state.pokemon} />  
@@ -30,5 +37,4 @@ export class App extends Component {
       {/* <GlobalStyle/> */}
       </>
     );
-  }
 };
